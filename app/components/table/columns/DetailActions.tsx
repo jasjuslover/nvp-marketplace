@@ -13,25 +13,25 @@ const DetailActions = ({ product }: DetailActionsProps) => {
   const { show, openModal, closeModal } = useModal();
 
   const images = useMemo(() => {
-    const imageLen = product?.images?.length;
-    if (imageLen) {
-      if (imageLen === 1) {
-        const imgs = product?.images?.map(
-          (image) => (JSON.parse(image) as string[])?.[0]
-        );
-        return imgs;
+    try {
+      const imageLen = product?.images?.length;
+      if (imageLen) {
+        if (imageLen === 1) {
+          const imgs = product?.images?.map(
+            (image) => (JSON.parse(image) as string[])?.[0]
+          );
+          return imgs;
+        }
+
+        const img = product?.images?.join(",");
+        const parsed = JSON.parse(img || "[]") as string[];
+        return parsed;
       }
 
-      console.log({ imgs: product?.images });
-      const img = product?.images?.join(",");
-      const parsed = JSON.parse(img || "[]") as string[];
-      return parsed;
+      return [];
+    } catch (error) {
+      return [];
     }
-
-    return [];
-
-    // console.log({ img, parsed: JSON.parse(img) });
-    // return product?.images;
   }, [product]);
 
   console.log({ images });
