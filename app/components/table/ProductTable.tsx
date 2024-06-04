@@ -63,8 +63,6 @@ const ProductTable = () => {
   const data = useMemo(() => productData?.data || [], [productData]);
   const columns = useMemo(() => productColumns, []);
 
-  console.log({ data });
-
   const table = useReactTable({
     data,
     columns,
@@ -105,8 +103,6 @@ const ProductTable = () => {
       router.push(url);
     }, 800);
   };
-
-  console.log({ table: table.getCoreRowModel() });
 
   return (
     <>

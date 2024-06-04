@@ -34,8 +34,6 @@ const DetailActions = ({ product }: DetailActionsProps) => {
     }
   }, [product]);
 
-  console.log({ images });
-
   return (
     <>
       <Button icon={<EyeOutlined />} onClick={openModal} />
