@@ -38,7 +38,13 @@ const DetailActions = ({ product }: DetailActionsProps) => {
     <>
       <Button icon={<EyeOutlined />} onClick={openModal} />
 
-      <Modal open={show} title="Detail Product" onCancel={closeModal}>
+      <Modal
+        open={show}
+        title="Detail Product"
+        onCancel={closeModal}
+        okButtonProps={{ rootClassName: "!hidden" }}
+        cancelText="Close"
+      >
         <div>
           <h3 className="font-bold text-lg">{product?.title}</h3>
           <p>{formatCurrency(product?.price || 0)}</p>
@@ -50,6 +56,7 @@ const DetailActions = ({ product }: DetailActionsProps) => {
             <Image.PreviewGroup items={images}>
               <Image
                 src={images?.[0]}
+                alt={product?.title}
                 width={200}
                 height={200}
                 className="object-cover"
